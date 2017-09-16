@@ -54,8 +54,11 @@ func Render(confs []BlockConfig) []i3bar.Block {
 			blocks = append(blocks, ErrorBlock(err))
 			continue
 		}
-		block := i3bar.Block{FullText: strings.TrimSpace(Buffer.String())}
+		block := i3bar.Block{FullText: strings.TrimSpace(string(Buffer.Bytes()))}
 		if block.FullText != "" {
+			if bconf.Label != "" {
+				block.FullText = bconf.Label + " " + block.FullText
+			}
 			blocks = append(blocks, block)
 		}
 	}

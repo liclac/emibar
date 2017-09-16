@@ -45,6 +45,7 @@ func (t *Template) UnmarshalYAML(unmarshal func(interface{}) error) error {
 
 // Block definition.
 type BlockConfig struct {
+	Label    string   `yaml:"label"`
 	Template Template `yaml:"tpl"`
 }
 

@@ -1,3 +1,6 @@
 blocks:
-- tpl: '{{first (ip "enp3s0")}}'
+- label: 📡
+  tpl: '{{first (ip "wlp3s0")}}'
+- label: 🔗
+  tpl: '{{first (ip "enp3s0")}}'
 - tpl: '{{time "%Y-%m-%d %H:%M"}}'
