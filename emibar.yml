@@ -1,0 +1,2 @@
+blocks:
+- tpl: '{{time "%Y-%m-%d %H:%M"}}'
