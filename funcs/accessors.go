@@ -29,27 +29,27 @@ func init() {
 	Registry["last"] = Last
 }
 
-// Returns the first item in an array, or nil.
+// Returns the first item in an array, or "".
 func First(items reflect.Value) interface{} {
 	switch items.Kind() {
 	case reflect.Array, reflect.Slice:
 		if items.Len() > 0 {
 			return items.Index(0).Interface()
 		}
-		return nil
+		return ""
 	default:
 		return items
 	}
 }
 
-// Returns the last item in an array, or nil.
+// Returns the last item in an array, or "".
 func Last(items reflect.Value) interface{} {
 	switch items.Kind() {
 	case reflect.Array, reflect.Slice:
 		if l := items.Len(); l > 0 {
 			return items.Index(l - 1).Interface()
 		}
-		return nil
+		return ""
 	default:
 		return items
 	}
