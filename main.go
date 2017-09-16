@@ -28,6 +28,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -46,14 +47,16 @@ var Header = i3bar.Header{
 var Buffer bytes.Buffer
 
 func Render(confs []BlockConfig) []i3bar.Block {
-	blocks := make([]i3bar.Block, len(confs))
-	for i, bconf := range confs {
+	var blocks []i3bar.Block
+	for _, bconf := range confs {
 		Buffer.Reset()
 		if err := bconf.Template.Execute(&Buffer, nil); err != nil {
-			// blocks[i] = ErrorBlock(err)
+			blocks = append(blocks, ErrorBlock(err))
 			continue
-		} else {
-			blocks[i] = i3bar.Block{FullText: Buffer.String()}
+		}
+		block := i3bar.Block{FullText: strings.TrimSpace(Buffer.String())}
+		if block.FullText != "" {
+			blocks = append(blocks, block)
 		}
 	}
 	return blocks

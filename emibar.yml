@@ -1,2 +1,3 @@
 blocks:
+- tpl: '{{(index (ip "enp3s0") 0).String}}'
 - tpl: '{{time "%Y-%m-%d %H:%M"}}'
